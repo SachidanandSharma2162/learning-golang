@@ -1,0 +1,4 @@
+strconv is used for type conversion as we get string from bufio
+
+updatedNumber,err:=strconv.ParseFloat(strings.TrimSpace(number),64)
+updatedNumber,err:=strconv.ParseInt(strings.TrimSpace(number),10,64)
