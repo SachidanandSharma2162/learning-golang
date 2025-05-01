@@ -47,4 +47,149 @@ Use karna:
 p1 := Person{Name: "Arin", Age: 23}
 fmt.Println(p1.Name, p1.Age)
 
-there is no inheritance in golang
+*** there is no inheritance in golang ***
+
+
+✅ Basic if statement
+age := 20
+
+if age >= 18 {
+    fmt.Println("You are an adult")
+}
+
+🔁 if-else example
+number := 5
+
+if number%2 == 0 {
+    fmt.Println("Even")
+} else {
+    fmt.Println("Odd")
+}
+
+🔁 if-else if-else chain
+score := 85
+
+if score >= 90 {
+    fmt.Println("Grade: A")
+} else if score >= 75 {
+    fmt.Println("Grade: B")
+} else {
+    fmt.Println("Grade: C")
+}
+
+🧠 if with short variable declaration
+if num := 10; num > 5 {
+    fmt.Println("Greater than 5")
+}
+
+⚠️ Notes:
+Go me parentheses ( ) nahi lagte if condition ke around.
+Braces {} mandatory hote hain (even for one-liner blocks).
+
+
+1️⃣ fmt.Print()
+Just prints values as is, without newline unless you add \n manually.
+fmt.Print("Hello")
+fmt.Print("World")
+// Output: HelloWorld
+
+2️⃣ fmt.Println()
+Prints values with a space between them and automatically adds a newline (\n) at the end.
+fmt.Println("Hello")
+fmt.Println("World")
+// Output:
+// Hello
+// World
+fmt.Println("A", "B", "C")
+// Output: A B C
+
+3️⃣ fmt.Printf() → "Formatted print"
+Gives full control with format specifiers like %s, %d, %f, etc.
+Does not add a newline automatically — you need to use \n.
+name := "Arin"
+age := 21
+fmt.Printf("Name: %s, Age: %d\n", name, age)
+// Output: Name: Arin, Age: 21
+
+🧪 Common Format Specifiers:
+Specifier	Use
+%d	Integer
+%s	String
+%f	Float
+%v	Default value
+%T	Type of variable
+%p	Address/pointer
+\n	New line
+
+🧠 Example Summary:
+fmt.Print("One")
+fmt.Print("Two")
+// Output: OneTwo
+
+fmt.Println("One")
+fmt.Println("Two")
+// Output:
+// One
+// Two
+
+fmt.Printf("My age is %d\n", 20)
+// Output: My age is 20
+
+
+✅ Basic switch syntax:
+day := 3
+
+switch day {
+case 1:
+    fmt.Println("Monday")
+case 2:
+    fmt.Println("Tuesday")
+case 3:
+    fmt.Println("Wednesday")
+default:
+    fmt.Println("Invalid day")
+}
+
+🔁 Multiple values in one case:
+char := 'a'
+
+switch char {
+case 'a', 'e', 'i', 'o', 'u':
+    fmt.Println("Vowel")
+default:
+    fmt.Println("Consonant")
+}
+
+🧠 switch without expression (like if-else):
+age := 25
+
+switch {
+case age < 18:
+    fmt.Println("Minor")
+case age >= 18 && age < 60:
+    fmt.Println("Adult")
+default:
+    fmt.Println("Senior")
+}
+
+⛔ No fallthrough by default
+Unlike C/C++, Go doesn’t automatically fall through to the next case. But if you want to, use 
+
+fallthrough:
+switch num := 1; num {
+case 1:
+    fmt.Println("One")
+    fallthrough
+case 2:
+    fmt.Println("Two")
+}
+// Output: One
+//         Two
+
+
+🔍 Summary:
+Feature	Go’s switch
+break needed?	❌ No (auto-breaks)
+fallthrough?	✅ Optional
+Multiple values per case?	✅ Yes
+Can be used like if-else?	✅ Yes

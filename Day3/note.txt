@@ -128,15 +128,12 @@ Symbol	Meaning
 &x	Address of x
 *p	Value at address p
 *int	Pointer to int
-<<<<<<< HEAD
 &var	Returns pointer to var
 
 
 🧱 What is an Array in Go?
 Array ek fixed-size collection hoti hai same type ke elements ki.
-
 Size fix hota hai — na zyada na kam.
-
 Elements memory mein contiguous location pe store hote hain.
 
 🛠 Syntax:
@@ -172,11 +169,8 @@ Iterate	for i, val := range a
 
 🧩 What is a Slice?
 Slice is like an array, but flexible.
-
 Dynamic length — tu chahe jitna data bhar de.
-
 Internally, slice uses an array, but gives you more control and power.
-
 🛠 Slice Syntax:
 var s []int // declares a slice (nil by default)
 
