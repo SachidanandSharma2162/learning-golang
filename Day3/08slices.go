@@ -47,5 +47,5 @@ func main()  {
 
 	fmt.Println(sort.IntsAreSorted(s))
 	sort.Ints(s)
-	// fmt.Println(sort.IntsAreSorted(s))
+	fmt.Println(sort.IntsAreSorted(s))
 }
