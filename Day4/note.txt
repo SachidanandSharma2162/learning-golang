@@ -6,3 +6,34 @@ func removeByIndex(s []int, index int) []int {
 nums := []int{10, 20, 30, 40, 50}
 nums = removeByIndex(nums, 2) // removes 30
 fmt.Println(nums)             // Output: [10 20 40 50]
+
+
+🧠 Basic Map Syntax:
+ages := make(map[string]int)
+ages["Arin"] = 22
+ages["Sahil"] = 25
+Ya short form:
+
+ages := map[string]int{
+    "Arin":  22,
+    "Sahil": 25,
+}
+
+❓ Key Exists Check:
+
+age, ok := ages["Aman"]
+if ok {
+    fmt.Println("Found:", age)
+} else {
+    fmt.Println("Not found")
+}
+
+❌ Delete a Key:
+
+delete(ages, "Sahil")
+
+🔁 Looping Through Map:
+
+for name, age := range ages {
+    fmt.Printf("%s is %d years old\n", name, age)
+}
