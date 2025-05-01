@@ -20,7 +20,6 @@ ages := map[string]int{
 }
 
 ❓ Key Exists Check:
-
 age, ok := ages["Aman"]
 if ok {
     fmt.Println("Found:", age)
@@ -29,11 +28,23 @@ if ok {
 }
 
 ❌ Delete a Key:
-
 delete(ages, "Sahil")
 
 🔁 Looping Through Map:
-
 for name, age := range ages {
     fmt.Printf("%s is %d years old\n", name, age)
 }
+
+🧱 Let's learn structs in Go!
+Structs are like custom data types — apne khud ke objects banane ke liye.
+
+✅ Basic Syntax:
+type Person struct {
+    Name string
+    Age  int
+}
+Use karna:
+p1 := Person{Name: "Arin", Age: 23}
+fmt.Println(p1.Name, p1.Age)
+
+there is no inheritance in golang
