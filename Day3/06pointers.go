@@ -27,6 +27,7 @@ func main()  {
 	// updateValue(&num)
 	// fmt.Println("Updated:", num) // 15
 	
+<<<<<<< HEAD
 	// a := 25
     // p := &a
 
@@ -47,4 +48,17 @@ func main()  {
 	fmt.Println("value of ptr: \n",ptr)
 	fmt.Printf("value at ptr: %d\n",*(ptr))
 
+=======
+	a := 25
+    p := &a
+
+    fmt.Printf("Value of a: %d\n", a)
+    fmt.Printf("Address of a: %p\n", &a)
+    fmt.Printf("Pointer p: %p\n", p)
+    fmt.Printf("Value at pointer p: %d\n", *p)
+
+    // Change value using pointer
+    *p = 50
+    fmt.Printf("New value of a after pointer update: %d\n", a)
+>>>>>>> 174878aa41d41b89ef04d060a7c2525d526e5b8a
 }
