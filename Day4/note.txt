@@ -1,0 +1,8 @@
+✅ Remove element by index
+func removeByIndex(s []int, index int) []int {
+    return append(s[:index], s[index+1:]...)
+}
+🔁 Example:
+nums := []int{10, 20, 30, 40, 50}
+nums = removeByIndex(nums, 2) // removes 30
+fmt.Println(nums)             // Output: [10 20 40 50]
