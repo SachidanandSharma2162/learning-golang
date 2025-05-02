@@ -13,5 +13,7 @@ func main()  {
 
 	// works like LIFO stack
 	// usually used for file handling and database management
-	
+	for i := 0; i < 5; i++ {
+		defer fmt.Print(i)
+	}
 }
