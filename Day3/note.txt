@@ -88,6 +88,7 @@ Feature	Description
 Go is memory-efficient + developer-friendly.
 No manual headaches, no crashes — aur agar chahiye to low-level control bhi milta hai. ⚙️
 
+----------------------------------------------------------------------------------------------------------------------------------
 
 🧠 What is a Pointer?
 Pointer ek variable ka address hota hai.
@@ -130,6 +131,7 @@ Symbol	Meaning
 *int	Pointer to int
 &var	Returns pointer to var
 
+----------------------------------------------------------------------------------------------------------------------------------
 
 🧱 What is an Array in Go?
 Array ek fixed-size collection hoti hai same type ke elements ki.
@@ -166,6 +168,7 @@ Access	a[0], a[1] = 50
 Length	len(a)
 Iterate	for i, val := range a
 
+----------------------------------------------------------------------------------------------------------------------------------
 
 🧩 What is a Slice?
 Slice is like an array, but flexible.

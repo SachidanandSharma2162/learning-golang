@@ -49,6 +49,7 @@ fmt.Println(p1.Name, p1.Age)
 
 *** there is no inheritance in golang ***
 
+----------------------------------------------------------------------------------------------------------------------------------
 
 ✅ Basic if statement
 age := 20
@@ -86,6 +87,7 @@ if num := 10; num > 5 {
 Go me parentheses ( ) nahi lagte if condition ke around.
 Braces {} mandatory hote hain (even for one-liner blocks).
 
+----------------------------------------------------------------------------------------------------------------------------------
 
 1️⃣ fmt.Print()
 Just prints values as is, without newline unless you add \n manually.
@@ -135,6 +137,7 @@ fmt.Println("Two")
 fmt.Printf("My age is %d\n", 20)
 // Output: My age is 20
 
+----------------------------------------------------------------------------------------------------------------------------------
 
 ✅ Basic switch syntax:
 day := 3

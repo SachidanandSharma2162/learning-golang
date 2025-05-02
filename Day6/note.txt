@@ -1,0 +1,30 @@
+GoLang me methods functions jaise hi hote hain, bas ye struct ke saath attached hote hain. Jaise object-oriented languages me hota hai.
+
+🔧 What is a Method?
+A method is a function with a receiver — usually a struct — jisko ye belong karta hai.
+
+🧠 Value vs Pointer Receiver:
+❌ Value receiver — doesn't change original:
+
+func (p Person) birthday() {
+    p.age += 1 // changes only local copy
+}
+✅ Pointer receiver — changes real value:
+
+func (p *Person) haveBirthday() {
+    p.age += 1 // modifies original struct
+}
+
+p := Person{"Arin", 22}
+p.haveBirthday()
+fmt.Println(p.age) // Output: 23
+
+📦 Why use Methods?
+Achieve object-oriented style.
+Attach logic to a data type (struct).
+Cleaner and more organized code.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+🔁 What is defer?
+defer kisi function call ko delay kar deta hai until the surrounding function returns.

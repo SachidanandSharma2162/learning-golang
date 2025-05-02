@@ -5,31 +5,23 @@ It is complied and interpreted as well.
 Go tool can run file directly, without virtual machine
 
 We use Golang (or Go) because it’s fast, simple, and powerful — especially for building things like servers, APIs, cloud services, and even networking tools. Here's a quick breakdown:
-
 Speed: Go compiles directly to machine code, so it runs really fast (almost like C or C++).
-
 Simplicity: The syntax is super clean and minimal, making code easier to read and maintain.
-
 Concurrency: Go has built-in support for handling many tasks at the same time (using goroutines), which is perfect for web servers and real-time apps.
-
 Cross-Platform: You can build apps for Linux, Windows, Mac from the same codebase easily.
-
 Big Ecosystem: Tons of libraries and tools, especially for backend and cloud development (Docker, Kubernetes, etc., are written in Go!).
-
 Memory Efficient: Good performance without using tons of RAM.
-
 Great for Microservices: Lightweight and efficient, ideal for building lots of small services that talk to each other.
 
 Goroutines ka thoda intro (kyunki concurrency Go ka hero feature hai)
-
 Case sensitive,
 variable should be known in advance
 everything is a type
 
+----------------------------------------------------------------------------------------------------------------------------------
+
 Variable:
-
 Go ke Main Types:
-
 Type	Example	Description
 int	var x int = 10	Integer numbers (whole numbers)
 float64	var y float64 = 3.14	Floating point (decimal numbers)
@@ -42,6 +34,7 @@ Thing	Meaning
 fmt.Scanln	Read input till newline (Enter key)
 &variable	Memory address dena padta hai (pass by reference)
 fmt.Scanf	Read input with format specifiers like %s, %d, etc.
+----------------------------------------------------------------------------------------------------------------------------------
 
 📚 GoLang Format Specifiers (Printf/Scanf ke liye)
 
@@ -57,6 +50,7 @@ Specifier	Use for	Example
 %o	Octal (int)	8 → 10
 %x	Hexadecimal (int)	15 → f
 %%	Print a percent sign	%
+----------------------------------------------------------------------------------------------------------------------------------
 
 bufio:
 
