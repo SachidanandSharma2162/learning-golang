@@ -28,3 +28,47 @@ Cleaner and more organized code.
 
 🔁 What is defer?
 defer kisi function call ko delay kar deta hai until the surrounding function returns.
+
+✅ Basic Example:
+func main() {
+    fmt.Println("Start")
+    defer fmt.Println("This is deferred")
+    fmt.Println("End")
+}
+
+Output:
+Start  
+End  
+This is deferred
+
+🧠 defer wala line function ke end me run hota hai, chahe beech me return ho ya error ho.
+
+⚠️ Real-World Use Case – File Handling:
+file, err := os.Open("myfile.txt")
+if err != nil {
+    log.Fatal(err)
+}
+defer file.Close() // ensures file will close
+Even if panic/error occurs, file will still close — safe coding practice.
+
+🔁 Multiple Defers? (LIFO Order)
+
+func main() {
+    defer fmt.Println("One")
+    defer fmt.Println("Two")
+    defer fmt.Println("Three")
+    fmt.Println("Main done")
+}
+Output:
+
+Main done  
+Three  
+Two  
+One
+🔁 Last-in, First-out (LIFO) order — stack ki tarah.
+
+✅ Use Cases:
+File closing: defer file.Close()
+Unlocking mutex: defer mu.Unlock()
+Database connections
+Recovering from panic

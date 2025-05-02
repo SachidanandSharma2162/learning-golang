@@ -18,6 +18,6 @@ func proAdder(values...int)(int,string)  {
 func main()  {
 	// a:=5
 	// b:=10
-	c,_:=proAdder(1,2,3,4,5,6,7,8,9,10)
-	fmt.Printf("the sumṇ is: %d",c)
+	c,_:= proAdder(1,2,3,4,5,6,7,8,9,10)
+	fmt.Printf("the defered sum is: %d",c)
 }
