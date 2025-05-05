@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "day8": "file:",
     "express": "^5.1.0"
   }
 }
