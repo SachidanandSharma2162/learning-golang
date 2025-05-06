@@ -1,0 +1,266 @@
+Package gorilla/mux implements a request router and dispatcher for matching incoming requests to their respective handler.
+
+The name mux stands for "HTTP request multiplexer". Like the standard http.ServeMux, mux.Router matches incoming requests against a list of registered routes and calls a handler for the route that matches the URL or other conditions. The main features are:
+
+It implements the http.Handler interface so it is compatible with the standard http.ServeMux.
+Requests can be matched based on URL host, path, path prefix, schemes, header and query values, HTTP methods or using custom matchers.
+URL hosts, paths and query values can have variables with an optional regular expression.
+Registered URLs can be built, or "reversed", which helps maintaining references to resources.
+Routes can be used as subrouters: nested routes are only tested if the parent route matches. This is useful to define groups of routes that share common conditions like a host, a path prefix or other repeated attributes. As a bonus, this optimizes request matching.
+
+
+
+Install
+With a correctly configured Go toolchain:
+
+go get -u github.com/gorilla/mux
+
+Examples
+Let's start registering a couple of URL paths and handlers:
+
+func main() {
+    r := mux.NewRouter()
+    r.HandleFunc("/", HomeHandler)
+    r.HandleFunc("/products", ProductsHandler)
+    r.HandleFunc("/articles", ArticlesHandler)
+    http.Handle("/", r)
+}
+
+----------------------------------------------------------------------------------------------------------------------------------
+🔍 Step 5: Check your module files
+go.mod now contains the external dependency.
+
+go.sum is created to verify package integrity.
+
+go mod tidy Go modules me ek bahut useful command hai.
+Yeh aapke go.mod aur go.sum files ko clean aur accurate banata hai.
+----------------------------------------------------------------------------------------------------------------------------------
+🔧 go mod tidy kya karta hai?
+✅ Jo dependencies aapke code me use ho rahe hain — unko go.mod me add karta hai (agar missing hain).
+
+🧹 Jo dependencies use nahi ho rahe hain, unko go.mod aur go.sum se hata deta hai.
+
+🔐 go.sum ko update karta hai — jisme checksums store hote hain for dependency verification for malicious injection
+
+⚖️ Overall, module file ko sync me laata hai actual imports ke saath.
+
+📦 Example:
+
+import "github.com/fatih/color"
+Agar aap color package import karte ho lekin go.mod me entry nahi hai, to:
+
+go mod tidy
+Isse:
+
+go.mod me entry add ho jayegi.
+
+Dependency download ho jayegi.
+
+go.sum me checksum bhi save hoga.
+
+🚫 Agar aap kisi package ko remove kar dete ho from code:
+
+// import "github.com/fatih/color" <- removed
+To go mod tidy us unused dependency ko go.mod aur go.sum se hata dega.
+
+🔁 You should run go mod tidy:
+After adding/removing packages
+
+Before committing to GitHub (to keep things clean)
+
+go mod verify:
+verifies all the modules, goes to go.sum and verify if everything is fine or not
+
+PS C:\Users\Asus\Desktop\webdev_2025\golang\day10> go mod verify 
+all modules verified
+
+PS C:\Users\Asus\Desktop\webdev_2025\golang\day10> go list
+day10
+----------------------------------------------------------------------------------------------------------------------------------
+PS C:\Users\Asus\Desktop\webdev_2025\golang\day10> go list all
+bufio
+bytes
+cmp
+compress/flate
+compress/gzip
+container/list
+context
+crypto
+crypto/aes
+crypto/cipher
+crypto/des
+crypto/dsa
+crypto/ecdh
+crypto/ecdsa
+crypto/ed25519
+crypto/elliptic
+crypto/hmac
+crypto/internal/boring
+crypto/internal/boring/bbig
+crypto/internal/boring/sig
+crypto/internal/entropy
+crypto/internal/fips140
+crypto/internal/fips140/aes
+crypto/internal/fips140/aes/gcm
+crypto/internal/fips140/alias
+crypto/internal/fips140/bigmod
+crypto/internal/fips140/check
+crypto/internal/fips140/drbg
+crypto/internal/fips140/ecdh
+crypto/internal/fips140/ecdsa
+crypto/internal/fips140/ed25519
+crypto/internal/fips140/edwards25519
+crypto/internal/fips140/edwards25519/field
+crypto/internal/fips140/hkdf
+crypto/internal/fips140/hmac
+crypto/internal/fips140/mlkem
+crypto/internal/fips140/nistec
+crypto/internal/fips140/nistec/fiat
+crypto/internal/fips140/rsa
+crypto/internal/fips140/sha256
+crypto/internal/fips140/sha3
+crypto/internal/fips140/sha512
+crypto/internal/fips140/subtle
+crypto/internal/fips140/tls12
+crypto/internal/fips140/tls13
+crypto/internal/fips140deps/byteorder
+crypto/internal/fips140deps/cpu
+crypto/internal/fips140deps/godebug
+crypto/internal/fips140hash
+crypto/internal/fips140only
+crypto/internal/hpke
+crypto/internal/impl
+crypto/internal/randutil
+crypto/internal/sysrand
+crypto/md5
+crypto/rand
+crypto/rc4
+crypto/rsa
+crypto/sha1
+crypto/sha256
+crypto/sha3
+crypto/sha512
+crypto/subtle
+crypto/tls
+crypto/tls/internal/fips140tls
+crypto/x509
+crypto/x509/pkix
+day10
+encoding/asn1
+encoding/base64
+encoding/binary
+encoding/hex
+encoding/pem
+errors
+fmt
+github.com/gorilla/mux
+hash
+hash/crc32
+internal/abi
+internal/asan
+internal/bisect
+internal/bytealg
+internal/byteorder
+internal/chacha8rand
+internal/coverage/rtcov
+internal/cpu
+internal/filepathlite
+internal/fmtsort
+internal/goarch
+internal/godebug
+internal/godebugs
+internal/goexperiment
+internal/goos
+internal/itoa
+internal/msan
+internal/nettrace
+internal/oserror
+internal/poll
+internal/profilerecord
+internal/race
+internal/reflectlite
+internal/runtime/atomic
+internal/runtime/exithook
+internal/runtime/maps
+internal/runtime/math
+internal/runtime/sys
+internal/singleflight
+internal/stringslite
+internal/sync
+internal/syscall/execenv
+internal/syscall/windows
+internal/syscall/windows/registry
+internal/syscall/windows/sysdll
+internal/testlog
+internal/unsafeheader
+io
+io/fs
+iter
+log
+log/internal
+maps
+math
+math/big
+math/bits
+math/rand
+math/rand/v2
+mime
+mime/multipart
+mime/quotedprintable
+net
+net/http
+net/http/httptrace
+net/http/internal
+net/http/internal/ascii
+net/netip
+net/textproto
+net/url
+os
+path
+path/filepath
+reflect
+regexp
+regexp/syntax
+runtime
+slices
+sort
+strconv
+strings
+sync
+sync/atomic
+syscall
+time
+unicode
+unicode/utf16
+unicode/utf8
+unique
+unsafe
+vendor/golang.org/x/crypto/chacha20
+vendor/golang.org/x/crypto/chacha20poly1305
+vendor/golang.org/x/crypto/cryptobyte
+vendor/golang.org/x/crypto/cryptobyte/asn1
+vendor/golang.org/x/crypto/internal/alias
+vendor/golang.org/x/crypto/internal/poly1305
+vendor/golang.org/x/net/dns/dnsmessage
+vendor/golang.org/x/net/http/httpguts
+vendor/golang.org/x/net/http/httpproxy
+vendor/golang.org/x/net/http2/hpack
+vendor/golang.org/x/net/idna
+vendor/golang.org/x/sys/cpu
+vendor/golang.org/x/text/secure/bidirule
+vendor/golang.org/x/text/transform
+vendor/golang.org/x/text/unicode/bidi
+vendor/golang.org/x/text/unicode/norm
+weak
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+PS C:\Users\Asus\Desktop\webdev_2025\golang\day10> go  mod why github.com/gorilla/mux
+# github.com/gorilla/mux
+day10
+github.com/gorilla/mux
+
+PS C:\Users\Asus\Desktop\webdev_2025\golang\day10> go mod graph
+day10 github.com/gorilla/mux@v1.8.1
+day10 go@1.24.2
+go@1.24.2 toolchain@go1.24.2
