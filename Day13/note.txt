@@ -1,0 +1,130 @@
+🔁 What is Concurrency?
+Concurrency is when a program can run multiple tasks at the same time, but not necessarily in parallel. It's about structuring your program to do many things at once.
+
+Think of a chef preparing multiple dishes at once — they’re not doing everything at the same instant but are managing multiple tasks effectively.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+🌀 What is a Goroutine?
+A goroutine is a lightweight thread managed by the Go runtime. It allows you to run a function concurrently with other functions.
+
+Do not communicate by sharing memory instead share memory by communicating.
+
+Starts with go keyword
+
+Very memory-efficient (~2KB stack)
+
+Cheaper than threads
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+⚡ Parallelism in Go
+Parallelism is about doing multiple things at the exact same time — literally on multiple CPU cores.
+
+While concurrency is a design pattern to structure code, parallelism is about executing code simultaneously on multiple processors.
+
+
+🔐 Synchronization Tools:
+WaitGroup – wait for multiple goroutines to finish.
+
+Mutex – prevent race conditions.
+
+Channels – communicate between goroutines safely.
+
+
+🧠 What is a WaitGroup?
+A WaitGroup is used to wait for a collection of goroutines to finish. You:
+
+Add the number of goroutines to wait for.
+
+Each goroutine calls Done() when it finishes.
+
+The main goroutine calls Wait() to block until all others complete.
+
+package main
+
+import (
+    "fmt"
+    "sync"
+)
+
+func worker(id int, wg *sync.WaitGroup) {
+    defer wg.Done()
+    fmt.Printf("Worker %d starting\n", id)
+    // simulate work
+    fmt.Printf("Worker %d done\n", id)
+}
+
+func main() {
+    var wg sync.WaitGroup
+
+    for i := 1; i <= 3; i++ {
+        wg.Add(1)
+        go worker(i, &wg)
+    }
+
+    wg.Wait()
+    fmt.Println("All workers finished.")
+}
+
+
+🛑 Important Notes
+Always call wg.Done() once per Add(1).
+
+Use defer wg.Done() to ensure it runs even if the function errors.
+
+Don’t change the counter (Add) after calling Wait() — this can cause deadlocks or panics.
+
+
+🧠 What is a Mutex?
+A sync.Mutex is a locking mechanism that allows only one goroutine to access a critical section of code at a time.
+
+Think of it like a "room key":
+
+When one goroutine enters (calls Lock()), no one else can enter until it Unlock()s.
+
+🛠 When to Use
+Use Mutex when multiple goroutines read/write shared variables, like counters, maps, slices, etc.
+
+package main
+
+import (
+    "fmt"
+    "sync"
+)
+
+var count int
+var mu sync.Mutex
+
+func increment(wg *sync.WaitGroup) {
+    mu.Lock()
+    count++
+    mu.Unlock()
+    wg.Done()
+}
+
+func main() {
+    var wg sync.WaitGroup
+
+    for i := 0; i < 1000; i++ {
+        wg.Add(1)
+        go increment(&wg)
+    }
+
+    wg.Wait()
+    fmt.Println("Final Count:", count)
+}
+🔍 Without Mutex?
+If you remove mu.Lock() and mu.Unlock(), the result will be inconsistent (race condition).
+Go might print different counts on each run, not 1000.
+
+🛠 Mutex Methods
+mu.Lock() – Acquires the lock.
+
+mu.Unlock() – Releases the lock.
+
+⚠️ Never forget to unlock! Otherwise, it causes a deadlock.
+
+✅ Best practice: use defer mu.Unlock() right after mu.Lock().
+
+fatal error: all goroutines are asleep - deadlock! 
