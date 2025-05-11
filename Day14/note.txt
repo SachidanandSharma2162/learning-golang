@@ -1,0 +1,120 @@
+🧠 What is a Race Condition?
+A race condition happens when two or more goroutines access the same shared data at the same time, and at least one of them writes to it.
+
+Because the order of execution is unpredictable, your program may behave unexpectedly or inconsistently.
+
+package main
+
+import (
+    "fmt"
+    "sync"
+)
+
+var count = 0
+
+func increment(wg *sync.WaitGroup) {
+    for i := 0; i < 1000; i++ {
+        count++ // race condition!
+    }
+    wg.Done()
+}
+
+func main() {
+    var wg sync.WaitGroup
+    wg.Add(2)
+
+    go increment(&wg)
+    go increment(&wg)
+
+    wg.Wait()
+    fmt.Println("Final Count:", count)
+}
+
+
+🔍 Problem
+Both goroutines are incrementing count.
+
+Since count++ is not atomic (it’s actually: read → add → write), goroutines might overwrite each other’s updates.
+
+💥 Possible Outputs:
+Final Count: 2000 (if lucky)
+
+Or: 1987, 1994, etc. (most likely)
+
+✅ Fixing with Mutex
+
+var mu sync.Mutex
+
+func increment(wg *sync.WaitGroup) {
+    for i := 0; i < 1000; i++ {
+        mu.Lock()
+        count++
+        mu.Unlock()
+    }
+    wg.Done()
+}
+
+// Final Count: 2000
+
+
+✅ Fixing with sync/atomic (alternative)
+
+import "sync/atomic"
+
+var count int64
+
+func increment(wg *sync.WaitGroup) {
+    for i := 0; i < 1000; i++ {
+        atomic.AddInt64(&count, 1)
+    }
+    wg.Done()
+}
+This is faster than using Mutex, but works only for primitive types like int64.
+
+
+🔗 What is a Channel?
+A channel is a way for goroutines to communicate with each other and synchronize their execution.
+
+You can send and receive values through a channel using the <- operator.
+
+
+📦 Buffered vs Unbuffered Channels
+🔹 Unbuffered Channel:
+Sender waits until the receiver is ready.
+
+Used for synchronization.
+
+🔹 Buffered Channel:
+
+ch := make(chan int, 2) // buffer size 2
+Sender doesn’t block until the buffer is full.
+
+Receiver doesn’t block until the buffer is empty.
+
+⛔ Closing a Channel
+
+close(ch)
+You should only close a channel when no more values will be sent.
+
+Receivers can check if the channel is closed:
+
+val, ok := <- ch
+if !ok {
+    fmt.Println("Channel closed")
+}
+⏳ Example: Using a Buffered Channel
+
+package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    ch := make(chan int, 2)
+    ch <- 1
+    ch <- 2
+
+    fmt.Println(<-ch)
+    fmt.Println(<-ch)
+}
