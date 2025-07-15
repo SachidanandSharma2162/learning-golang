@@ -22,6 +22,8 @@ func main(){
     var a=10
     fmt.Println(a)
 
+    var variable int=10;
+    fmt.Println(variable)
     // no var style
     // this method can only be used inside any method, but you can not use it to declare any global variable
     numberOfVideos := 10
