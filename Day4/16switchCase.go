@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main()  {
 	fmt.Println("Enter total marks:")
@@ -23,7 +25,17 @@ func main()  {
 		fmt.Println("Fail Grade F")
 	}
 
-    // Enter total marks:
-    // 98
-    // Grade A
+   whoAmI:= func (i interface{})  {
+	switch i.(type){
+	case int:
+		fmt.Println("Interger")
+	case string:
+		fmt.Println("String")
+	case bool:
+		fmt.Println("Boolean")
+	default:
+		fmt.Println("other")
+	}
+   }
+   whoAmI(3)
 }
