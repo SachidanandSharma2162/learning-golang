@@ -30,9 +30,10 @@ func main()  {
 
 	// new way to make slice
 
-	s:=make([]int,1,1)
-	s = append(s, 10,1,4)
+	s:=make([]int,0,1)
+	s = append(s, 10,1,4,8)
 	fmt.Println(s)
+	fmt.Println(cap(s))
 	fmt.Printf("This is of type : %T \n",userName)
 
 	// Slice slicing is also possible
