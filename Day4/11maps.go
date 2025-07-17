@@ -40,4 +40,8 @@ func main(){
 		delete(directions, k)
 	}
 	fmt.Println(directions)
+
+	for i,c:= range "golang"{
+		fmt.Println(i,string(c))
+	}
 }
