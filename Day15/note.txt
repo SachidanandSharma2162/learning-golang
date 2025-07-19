@@ -1,0 +1,51 @@
+In Go, functions are first-class citizens, which means you can:
+Assign them to variables
+Return them from other functions
+And yes — pass them as arguments
+
+✅ Syntax: Passing a function as an argument
+Here's a basic example:
+
+package main
+
+import "fmt"
+
+// Define a function that takes another function as an argument
+func operate(a int, b int, fn func(int, int) int) int {
+	return fn(a, b)
+}
+
+// Some simple functions to pass
+func add(x, y int) int {
+	return x + y
+}
+
+func multiply(x, y int) int {
+	return x * y
+}
+
+func main() {
+	fmt.Println("Addition:", operate(5, 3, add))       // Output: 8
+	fmt.Println("Multiplication:", operate(5, 3, multiply)) // Output: 15
+}
+🧠 Explanation:
+operate is a function that takes two ints and a function with signature func(int, int) int.
+
+We pass add and multiply as arguments to operate.
+
+🔁 Passing anonymous functions (lambda)
+You can also pass anonymous functions:
+
+result := operate(10, 5, func(x, y int) int {
+	return x - y
+})
+fmt.Println("Subtraction:", result) // Output: 5
+
+🔧 Use Cases
+Custom sort logic
+Filtering or mapping over data
+Callback-like behavior
+Middleware patterns in web servers
+
+
+interface go me any type ko show krta hai
