@@ -1,0 +1,16 @@
+func (O *Order) changeOrderStatus(status string){
+	O.status=status
+}
+
+yaha pr hame * use krne ki jarurat nhi hai kyuki struct hamare liye automatically ye kaam kr deta hai
+
+
+functionn ke case me use krna padta hai
+func incrementByValue(num int){
+	// call by Value
+	num=num+1
+}
+func incrementByReference(num *int){
+	// call by Reference
+	*num=*num+1
+}
