@@ -1,0 +1,35 @@
+🚨 Go does not have traditional enums like C/C++/Java.
+But — Go uses const + iota to simulate enum behavior.
+
+🧩 Simulating Enums in Go using iota
+
+iota is a keyword used in const blocks to auto-increment values.
+
+🧠 What is iota doing?
+Inside the const block:
+iota starts at 0 and increases by 1 automatically.
+You can assign symbolic names to constants.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+🤔 What are Generics?
+Generics allow you to write functions, types, and data structures that work with any type, while maintaining type safety.
+
+✅ Without duplicating code
+✅ Without using interface{} and unsafe type assertions
+✅ Similar to templates in C++ or generics in Java
+
+🔰 Basic Syntax
+
+func PrintSlice[T any](s []T) {
+	for _, v := range s {
+		fmt.Println(v)
+	}
+}
+T is a type parameter.
+any is shorthand for interface{} — it means T can be any type.
+
+🔧 Real-World Use Cases
+Generic data structures: stacks, queues, trees
+Reusable utility functions: min, max, filter, map
+Math functions with Number constraints
