@@ -1,0 +1,18 @@
+💪
+
+🧩 What is an Interface in Go?
+An interface is a type that specifies a method set — it defines what methods a type must have, but not how they are implemented.
+
+💡 In simple words: interfaces are contracts — if a type implements all the methods of an interface, it satisfies the interface.
+
+✅ Defining an Interface
+
+type Shape interface {
+	Area() float64
+	Perimeter() float64
+}
+
+🧠 Key Points:
+✅ No implements keyword needed — Go uses implicit interfaces.
+🔁 A type automatically satisfies an interface if it implements all required methods.
+🎯 Interfaces enable polymorphism — you can write functions that work with different types.
