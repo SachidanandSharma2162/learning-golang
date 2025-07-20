@@ -1,0 +1,2 @@
+This is my report on Golang
+And I'm loving leaning this new technolgy
