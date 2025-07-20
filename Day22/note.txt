@@ -1,0 +1,60 @@
+📦 What is a Package in Go?
+A package is a way to organize Go code. Every Go file belongs to a package.
+
+✅ One directory = One package
+✅ A package can have multiple .go files
+✅ You can import standard or custom packages using import
+
+
+🧱 Built-in Example
+
+package main
+
+import (
+	"fmt" // Standard library package
+)
+
+func main() {
+	fmt.Println("Hello from main package")
+}
+
+🧰 Creating and Using Custom Packages
+Let’s walk through creating your own custom package.
+
+📁 Folder Structure
+myproject/
+├── main.go
+└── utils/
+    └── mathutils.go
+🧮 utils/mathutils.go
+
+package utils
+
+// Add adds two integers
+func Add(a, b int) int {
+	return a + b
+}
+🔒 Functions starting with uppercase are exported (public), lowercase = private
+
+🚀 main.go
+package main
+
+import (
+	"fmt"
+	"myproject/utils" // Custom package import
+)
+
+func main() {
+	sum := utils.Add(10, 5)
+	fmt.Println("Sum:", sum)
+}
+
+🔧 If you're using Go modules, run this first:
+go mod init myproject
+🔍 Rules to Remember
+Rule	Description
+package main	Required for entry point (with func main())
+Exported items	Start with uppercase (FuncName)
+One folder = one package	All .go files in a folder belong to the same package
+Import path	Use module name + folder (e.g., myproject/utils)
+
